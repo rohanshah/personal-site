@@ -6,8 +6,7 @@ import json
 site = urllib2.urlopen("http://www.utphilly.com/listing/")
 html = site.read()
 soup = BeautifulSoup(html)
-events = soup.findAll("div", {"class": "list-view-item"})
-encoder = json.JSONEncoder()
+events = soup.select(".list-view-item")
 
 def getTextFromTag(tag):
  	if tag is None:
@@ -30,6 +29,7 @@ for event in events:
 
 	items.append(item)
 
+encoder = json.JSONEncoder()
 output = encoder.encode(items)
 file = open('utevents.json', 'w')
 file.write(output)
