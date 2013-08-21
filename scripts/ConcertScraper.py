@@ -4,11 +4,15 @@ import json
 
 class ConcertScraper():
 
-	def __init__(self, url):
+	def __init__(self, url, name):
 		self.url = url
+		self.name = name
 
 	def getUrl(self):
 		return self.url
+
+	def getName(self):
+		return self.name
 
 	def getSoup(self):
 		site = urllib2.urlopen(self.url)

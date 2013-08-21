@@ -3,7 +3,7 @@ from ConcertScraper import ConcertScraper
 class UnionTransferScraper(ConcertScraper):
 
 	def __init__(self):
-		ConcertScraper.__init__(self, "http://www.utphilly.com/listing/")
+		ConcertScraper.__init__(self, "http://www.utphilly.com/listing/", "union-transfer")
 
 	def getEvents(self, soup):
 		events = soup.select(".list-view-item")

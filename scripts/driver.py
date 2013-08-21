@@ -1,7 +1,10 @@
 #! /usr/bin/env python
 from UnionTransferScraper import UnionTransferScraper
 
-ut = UnionTransferScraper()
-utsoup = ut.getSoup()
-utevents = ut.getEvents(utsoup)
-ut.outputJSONFile(utevents, 'utevents.json')
+unionTransfer = UnionTransferScraper()
+scrapers = [unionTransfer]
+
+for scraper in scrapers:
+	soup = scraper.getSoup()
+	events = scraper.getEvents(soup)
+	scraper.outputJSONFile(events, scraper.getName()+'-events'+'.json')
