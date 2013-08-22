@@ -8,13 +8,7 @@ class ConcertScraper():
 		self.url = url
 		self.name = name
 
-	def getUrl(self):
-		return self.url
-
-	def getName(self):
-		return self.name
-
-	def getSoup(self):
+	def makeSoup(self):
 		site = urllib2.urlopen(self.url)
 		html = site.read()
 		soup = BeautifulSoup(html)
@@ -29,8 +23,8 @@ class ConcertScraper():
 	def getEvents(self, soup):
 		return []
 
-	def outputJSONFile(self, events, filename):
+	def outputJSONFile(self, events):
 		encoder = json.JSONEncoder()
 		output = encoder.encode(events)
-		file = open(filename, 'w')
+		file = open(self.name+"-events.json", 'w')
 		file.write(output)

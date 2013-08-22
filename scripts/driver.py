@@ -1,10 +1,12 @@
 #! /usr/bin/env python
 from UnionTransferScraper import UnionTransferScraper
+from MilkBoyScraper import MilkBoyScraper
 
 unionTransfer = UnionTransferScraper()
-scrapers = [unionTransfer]
+milkBoy = MilkBoyScraper()
+scrapers = [unionTransfer, milkBoy]
 
 for scraper in scrapers:
-	soup = scraper.getSoup()
+	soup = scraper.makeSoup()
 	events = scraper.getEvents(soup)
-	scraper.outputJSONFile(events, scraper.getName()+'-events'+'.json')
+	scraper.outputJSONFile(events)
