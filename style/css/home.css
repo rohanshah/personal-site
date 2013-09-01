@@ -1,0 +1,28 @@
+body {
+  max-width: 730px; }
+
+.main .icons {
+  padding-left: 0px;
+  margin-top: 20px;
+  list-style: none;
+  font-size: 24px;
+  color: #424242; }
+  .main .icons li {
+    margin: 10px 0px;
+    white-space: nowrap; }
+    .main .icons li i {
+      display: inline-block;
+      width: 24px;
+      margin-right: 15px;
+      color: black; }
+      .main .icons li i.icon-map-marker {
+        color: #e74c3c; }
+      .main .icons li i.icon-linkedin {
+        color: #4875b4; }
+      .main .icons li i.icon-phone {
+        color: #2ecc71; }
+      .main .icons li i.icon-envelope {
+        color: #a4a4a4; }
+    .main .icons li a {
+      text-decoration: none;
+      color: #424242; }
