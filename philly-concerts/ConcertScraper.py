@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import urllib2
-import json
 
 class ConcertScraper():
 
@@ -23,8 +22,5 @@ class ConcertScraper():
 	def getEvents(self, soup):
 		return []
 
-	def outputJSONFile(self, events):
-		encoder = json.JSONEncoder()
-		output = encoder.encode(events)
-		file = open(self.name+"-events.json", 'w')
-		file.write(output)
+	def parseDate(self, datestr):
+		return datestr

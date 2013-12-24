@@ -1,9 +1,11 @@
 from ConcertScraper import ConcertScraper
+import datetime
+from datetime import date
 
-class UnionTransferScraper(ConcertScraper):
+class MilkBoyScraper(ConcertScraper):
 
 	def __init__(self):
-		ConcertScraper.__init__(self, "http://www.utphilly.com/listing/", "union-transfer")
+		ConcertScraper.__init__(self, "http://www.milkboyphilly.com/listing/", "milk-boy")
 
 	def getEvents(self, soup):
 		events = []
@@ -11,9 +13,10 @@ class UnionTransferScraper(ConcertScraper):
 
 		for item in items:
 			event = {}
+			event['venue'] = "Milkboy"
 			event['artist'] = self.getTextFromTag(item.find('h1', {"class": "headliners"}))
 			event['openers'] = self.getTextFromTag(item.find('h2', {"class": "supports"}))
-			event['date'] = self.getTextFromTag(item.find('h2', {"class": "dates"}))
+			event['date'] = self.parseDate(self.getTextFromTag(item.find('h2', {"class": "dates"})))
 			event['time'] = self.getTextFromTag(item.find('h2', {"class": "times"}))
 			event['price'] = self.getTextFromTag(item.find('h3', {"class": "price-range"}))
 
@@ -24,3 +27,14 @@ class UnionTransferScraper(ConcertScraper):
 			events.append(event)
 
 		return events
+
+	def parseDate(self, datestr):
+		today = date.today()
+		eventdate = datetime.datetime.strptime(datestr, "%a %m/%d").date()
+
+		if eventdate.month >= today.month:
+			eventdate = eventdate.replace(year=today.year)
+		else:
+			eventdate = eventdate.replace(year=(today.year+1))
+
+		return eventdate.strftime("%Y-%m-%d")

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="musicApp">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="style/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style/css/main.css">
+		<link rel="stylesheet" href="style/css/music.css">
+		<script src="js/jquery-1.10.2.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script src="js/controllers/musicCtrl.js"></script>
+	</head>
+	<body ng-controller="MusicCtrl">
+		<h2 class="text-center">Philadelphia Concerts</h2>
+		<div id="artist-search">
+		<input type="text" class="form-control" placeholder="Search Artist" ng-model="search">
+		</div>
+		<div id="events" class="col-md-12">
+			<div id="event-repeater" ng-repeat="event in events | filter:{artist:search} | orderBy:'date'">
+				<div id="date" class="col-md-2">
+					<h3>{{event.date | date:'mediumDate'}}</h3>
+				</div>
+				<div class="col-md-10">
+					<p>
+						<h4 id="artist">
+							{{event.artist}}
+							<small id="openers" ng-show="event.openers">with {{event.openers}}</small>
+						</h4>
+						<span>
+							<span id="venue"> {{event.venue}} - {{event.time}}</span>
+						</span>
+						<br>
+						<span>
+							<a class="btn btn-primary btn-xs" ng-show="event.ticketLink" href={{event.ticketLink}} target="_blank">Get Tickets</a>
+							<a class="btn btn-danger btn-xs" disabled="disabled" ng-hide="event.ticketLink">Sold Out</a>
+							<span id="price"> | {{event.price}}</span>
+						</span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
