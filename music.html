@@ -13,12 +13,22 @@
 	<body ng-controller="MusicCtrl">
 		<h2 class="text-center">Philadelphia Concerts</h2>
 		<div id="artist-search">
-		<input type="text" class="form-control" placeholder="Search Artist" ng-model="search">
+			<input type="text" class="form-control" placeholder="Search Artist" ng-model="search">
+		</div>
+		<div id="venue-filter" class="text-center">
+			<button class="btn btn-sm btn-primary"
+			  ng-repeat="venue in venues"
+			  ng-click="venueFilter[venue]=!venueFilter[venue]"
+			  ng-class="{disabled: !venueFilter[venue]}">
+				{{venue}}
+			</button>
 		</div>
 		<div id="events" class="col-md-12">
-			<div id="event-repeater" ng-repeat="event in events | filter:{artist:search} | orderBy:'date'">
+			<div id="event-repeater"
+			  ng-repeat="event in events | filter:{artist:search} | orderBy:'date'"
+			  ng-show="venueFilter[event.venue]">
 				<div id="date" class="col-md-2">
-					<h3>{{event.date | date:'mediumDate'}}</h3>
+					<h3>{{event.date | date:'EEE M/d '}}</h3>
 				</div>
 				<div class="col-md-10">
 					<p>

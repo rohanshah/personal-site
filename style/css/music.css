@@ -5,6 +5,14 @@ body #artist {
 body #artist-search {
   width: 400px;
   margin: auto; }
+body #venue-filter {
+  margin-top: 10px;
+  margin-bottom: 0px; }
+  body #venue-filter button {
+    margin-right: 5px; }
+  body #venue-filter .disabled {
+    pointer-events: all;
+    cursor: pointer; }
 body #price {
   position: relative;
   top: 2px; }
