@@ -9,7 +9,8 @@ body #venue-filter {
   margin-top: 10px;
   margin-bottom: 0px; }
   body #venue-filter button {
-    margin-right: 5px; }
+    margin-right: 5px;
+    outline: none; }
   body #venue-filter .disabled {
     pointer-events: all;
     cursor: pointer; }
