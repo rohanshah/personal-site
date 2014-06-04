@@ -7,9 +7,15 @@ class ElectricFactoryScraper(ConcertScraper):
 
 	def __init__(self):
 		today = date.today()
+		self.month = today.month
+		self.year = today.year
 		ConcertScraper.__init__( self
-							   , "http://www.electricfactory.info/Monthly/"+str(today.month)+"/"+str(today.year)+""
+							   , self.makeUrl(self.month, self.year)
 							   , "electric-factory")
+
+	def makeUrl(self, month, year):
+		base = "http://www.electricfactory.info"
+		return base+"/Monthly/"+str(month)+"/"+str(year)
 
 	def getEvents(self, soup):
 		events = []
@@ -32,4 +38,11 @@ class ElectricFactoryScraper(ConcertScraper):
 
 			events.append(event)
 
-		return events
+		if not events:
+			return events
+		else:
+			self.month = self.month+1 if (self.month < 12) else 1
+			self.year = self.year+1 if (self.month == 1) else self.year
+			self.url = self.makeUrl(self.month, self.year)
+			soup = self.makeSoup()
+			return events+self.getEvents(soup)
