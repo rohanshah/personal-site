@@ -37,13 +37,13 @@
 							<small id="openers" ng-show="event.openers">with {{event.openers}}</small>
 						</h4>
 						<span>
-							<span id="venue"> {{event.venue}} - {{event.time}}</span>
+							<span id="venue"> {{event.venue}} - {{event.time | date:'shortTime'}}</span>
 						</span>
 						<br>
 						<span>
-							<a class="btn btn-primary btn-xs" ng-show="event.ticketLink" href={{event.ticketLink}} target="_blank">Get Tickets</a>
-							<a class="btn btn-danger btn-xs" disabled="disabled" ng-hide="event.ticketLink">Sold Out</a>
-							<span id="price"> | {{event.price}}</span>
+							<a class="btn btn-primary btn-xs" ng-hide="event.soldout" href={{event.ticketLink}} target="_blank">Get Tickets</a>
+							<a class="btn btn-danger btn-xs" disabled="disabled" ng-show="event.soldout">Sold Out</a>
+							<span ng-show="event.price" id="price"> | {{event.price}}</span>
 						</span>
 					</p>
 				</div>

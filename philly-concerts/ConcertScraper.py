@@ -1,3 +1,7 @@
+import time
+from time import strftime, mktime
+import datetime
+from datetime import date
 from bs4 import BeautifulSoup
 try:
   import urllib.request as urllib2
@@ -25,5 +29,21 @@ class ConcertScraper():
 	def getEvents(self, soup):
 		return []
 
-	def parseDate(self, datestr):
-		return datestr
+	def parseDate(self, datestr, dateform):
+		today = date.today()
+		eventdate = datetime.datetime.strptime(datestr, dateform).date()
+
+		if eventdate.month >= today.month:
+			eventdate = eventdate.replace(year=today.year)
+		else:
+			eventdate = eventdate.replace(year=(today.year+1))
+
+		return eventdate.strftime("%Y-%m-%d")
+
+	def parseTime(self, timestr, timeform):
+		try:
+			eventtime = time.strptime(timestr, timeform)
+		except ValueError:
+			eventtime = time.strptime(timestr, "%I%p")
+
+		return strftime("%I:%M %p", eventtime)
