@@ -1,13 +1,15 @@
 #! /usr/bin/env python
 from UnionTransferScraper import UnionTransferScraper
 from MilkBoyScraper import MilkBoyScraper
+from BootAndSaddleScraper import BootAndSaddleScraper
 from ElectricFactoryScraper import ElectricFactoryScraper
 import json
 
 unionTransfer = UnionTransferScraper()
 milkBoy = MilkBoyScraper()
+bootAndSaddle = BootAndSaddleScraper()
 electricFactory = ElectricFactoryScraper()
-scrapers = [unionTransfer, milkBoy, electricFactory]
+scrapers = [unionTransfer, milkBoy, bootAndSaddle, electricFactory]
 allEvents = []
 
 for scraper in scrapers:
