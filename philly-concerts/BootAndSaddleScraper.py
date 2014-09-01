@@ -1,9 +1,9 @@
 from ConcertScraper import ConcertScraper
 
-class UnionTransferScraper(ConcertScraper):
+class BootAndSaddleScraper(ConcertScraper):
 
 	def __init__(self):
-		ConcertScraper.__init__(self, "http://www.utphilly.com/listing/", "union-transfer")
+		ConcertScraper.__init__(self, "http://www.bootandsaddlephilly.com/listing/", "boot-and-saddle")
 
 	def getEvents(self, soup):
 		events = []
@@ -11,7 +11,7 @@ class UnionTransferScraper(ConcertScraper):
 
 		for item in items:
 			event = {}
-			event['venue'] = "Union Transfer"
+			event['venue'] = "Boot & Saddle"
 			event['artist'] = self.getTextFromTag(item.find('h1', {"class": "headliners"}))
 			event['openers'] = self.getTextFromTag(item.find('h2', {"class": "supports"}))
 			event['date'] = self.parseDate(self.getTextFromTag(item.find('h2', {"class": "dates"})), "%a %m/%d")
