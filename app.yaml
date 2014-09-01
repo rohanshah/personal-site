@@ -5,5 +5,13 @@ api_version: 1
 threadsafe: true
 
 handlers:
+- url: /style
+  static_dir: style
+- url: /js
+  static_dir: js
+- url: /images
+  static_dir: images
+- url: /philly-concerts
+  static_dir: philly-concerts
 - url: /.*
   script: index.app
